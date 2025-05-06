@@ -41,9 +41,16 @@ jobs:
       - name: Pull image from ghcr
         run: docker pull ghcr.io/${{github.repository}}/todofront:latest
 
-      - name: Deploy docker stack
+      - name: Generate .env file
         working-directory: ${{ secrets.WORKING_DIRECTORY }}/todofront
-        env:
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         run: |
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > .env
+
+      - name: Load env vars and deploy docker stack
+        working-directory: ${{ secrets.WORKING_DIRECTORY }}/todofront
+        
+        run: |
+          set -o allexport
+          source .env
+          set +o allexport
           docker stack deploy -c docker-compose.yml --with-registry-auth todofront
