@@ -10,6 +10,9 @@ services:
     networks:
       - todo-network
     deploy:
+      placement:
+        constraints:
+          - node.role == worker
       mode: replicated
       replicas: 1
       resources:
