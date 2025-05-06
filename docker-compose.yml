@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   todofront:
-    image: ghcr.io/${{github.repository}}/todofront:latest
+    image: ghcr.io/dxskull/todofront/todofront:latest
     ports:
       - "80:80"
     environment:
@@ -15,7 +15,7 @@ services:
     resources:
       limits:
         cpus: "0.25"
-        memory: 256M
+        memory: 512M
 
 networks:
   todo-network:
