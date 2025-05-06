@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   List,
   ListItem,
@@ -8,11 +8,10 @@ import {
   Checkbox,
   Typography,
   Paper,
-  Box,
-} from '@mui/material';
-import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Todo } from '../types';
-import { todos } from '../api';
+} from "@mui/material";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
+import { Todo } from "../types";
+import { todos } from "../api";
 
 interface TodoListProps {
   onEdit: (todo: Todo) => void;
@@ -31,7 +30,7 @@ export const TodoList: React.FC<TodoListProps> = ({ onEdit, onDelete }) => {
       const data = await todos.getAll();
       setTodoList(data);
     } catch (error) {
-      console.error('Error loading todos:', error);
+      console.error("Error loading todos:", error);
     }
   };
 
@@ -40,16 +39,16 @@ export const TodoList: React.FC<TodoListProps> = ({ onEdit, onDelete }) => {
       const updatedTodo = await todos.update(todo._id, {
         completed: !todo.completed,
       });
-      setTodoList(todoList.map((t) =>
-        t._id === updatedTodo._id ? updatedTodo : t
-      ));
+      setTodoList(
+        todoList.map((t) => (t._id === updatedTodo._id ? updatedTodo : t))
+      );
     } catch (error) {
-      console.error('Error updating todo:', error);
+      console.error("Error updating todo:", error);
     }
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 2, maxWidth: 600, mx: 'auto', mt: 2 }}>
+    <Paper elevation={3} sx={{ p: 2, maxWidth: 600, mx: "auto", mt: 2 }}>
       <Typography variant="h6" gutterBottom>
         Список задач
       </Typography>
@@ -59,7 +58,7 @@ export const TodoList: React.FC<TodoListProps> = ({ onEdit, onDelete }) => {
             key={todo._id}
             divider
             sx={{
-              textDecoration: todo.completed ? 'line-through' : 'none',
+              textDecoration: todo.completed ? "line-through" : "none",
               opacity: todo.completed ? 0.7 : 1,
             }}
           >
@@ -68,10 +67,7 @@ export const TodoList: React.FC<TodoListProps> = ({ onEdit, onDelete }) => {
               onChange={() => handleToggle(todo)}
               color="primary"
             />
-            <ListItemText
-              primary={todo.title}
-              secondary={todo.description}
-            />
+            <ListItemText primary={todo.title} secondary={todo.description} />
             <ListItemSecondaryAction>
               <IconButton
                 edge="end"
@@ -94,4 +90,4 @@ export const TodoList: React.FC<TodoListProps> = ({ onEdit, onDelete }) => {
       </List>
     </Paper>
   );
-}; 
+};
