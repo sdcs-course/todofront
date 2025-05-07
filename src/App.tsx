@@ -23,7 +23,7 @@ function App() {
     const token = params.get('token');
     if (token) {
       localStorage.setItem('token', token);
-      // Очищаем URL от токена
+      // Очищаем URL от токена!
       window.history.replaceState({}, document.title, window.location.pathname);
       window.location.reload();
     }
