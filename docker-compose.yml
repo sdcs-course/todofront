@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   todofront:
-    image: ghcr.io/dxskull/todofront/todofront:latest
+    image: ghcr.io/sdcs-course/todofront/todofront:latest
     ports:
       - "80:80"
     environment:
@@ -13,6 +13,7 @@ services:
       placement:
         constraints:
           - node.role == worker
+          - node.hostname == docker-node-3
       mode: replicated
       replicas: 1
       resources:
