@@ -43,5 +43,7 @@ jobs:
 
       - name: Deploy docker stack
         working-directory: ${{ secrets.WORKING_DIRECTORY }}/front
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         run: |
           docker stack deploy -c docker-compose-front.yml --with-registry-auth todofront
