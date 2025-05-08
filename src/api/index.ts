@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Todo, TodoStats } from "../types";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://todoback:5000";
+const API_URL = process.env.REACT_APP_API_URL || "http://165.232.73.69:5000";
 
 const api = axios.create({
   baseURL: API_URL,
